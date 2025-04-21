@@ -33,3 +33,8 @@ db.empleados.updateOne(
 db.empleados.deleteOne(
         {puesto: "Pasante"}
 )
+
+//ej2 
+db.empleados.find(
+    {edad: {$gte: 25, $lte: 40}}
+)
