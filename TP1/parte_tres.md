@@ -63,3 +63,15 @@ END!!
 
 DELIMITER ;
 ```
+
+## Ejercicio 9: Backup y Restore
+
+**Documentar paso a paso como hacer un backup completo en MySQL o PostgreSQL y como restaurarlo. Simular una perdida de datos y su posterior recuperacion.**
+
+```sql
+mysqldump -u root -p bd2 > backup.sql
+
+DROP DATABASE bd2;
+
+mysql -u root -p < backup.sql
+```
