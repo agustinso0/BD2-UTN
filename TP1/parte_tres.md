@@ -4,6 +4,7 @@
 
 **Crear un usuario analista que solo pueda hacer SELECT en ciertas tablas. Intentar insertar desde
  ese usuario y explicar el resultado.**
+
 `CREATE USER 'analista'@'localhost' IDENTIFIED BY '123456';`
 
 `GRANT SELECT ON bd2.clientes TO 'analista'@'localhost';`
