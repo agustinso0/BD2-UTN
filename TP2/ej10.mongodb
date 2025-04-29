@@ -1,0 +1,30 @@
+db.createUser({
+  user: "test",
+  pwd: "test",
+  roles: [
+    { role: "readWrite", db: "universidad" },
+  ]
+})
+
+/* 
+## BACKUP CON MONGODUMP ##
+
+mongodump \
+  --db empresa \
+  --out /backups/empresa_$(date +%Y%m%d) \
+  --username test \
+  --password test \
+  --authenticationDatabase empresa
+*/
+
+/*
+## RESTAURACION CON MONGORESTORE ##
+
+mongorestore \
+  --db empresa \
+  /backups/empresa_20250429/empresa \
+  --username test \
+  --password test \
+  --authenticationDatabase empresa
+
+*/

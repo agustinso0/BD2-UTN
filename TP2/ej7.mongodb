@@ -1,0 +1,31 @@
+use("universidad")
+
+db.cursos.insertMany([
+  { _id: ObjectId(), nombre: "Matemática", profesor: "Prof. López" },
+  { _id: ObjectId(), nombre: "Historia", profesor: "Prof. García" },
+  { _id: ObjectId(), nombre: "Programación", profesor: "Prof. Sánchez" }
+])
+
+
+db.cursos.find();
+
+db.alumnos.insertMany([
+  {
+    nombre: "Lucía",
+    edad: 20,
+    id_cursos: [
+      ObjectId("68111356aba8d171513d02b5"),
+      ObjectId("68111356aba8d171513d02b6") 
+    ]
+  },
+  {
+    nombre: "Martín",
+    edad: 22,
+    id_cursos: [
+      ObjectId("68111356aba8d171513d02b7")
+    ]
+  }
+])
+
+
+db.alumnos.find().pretty()
