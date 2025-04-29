@@ -62,3 +62,32 @@ db.ventas.insertMany([
     { producto: "Webcam HD", cantidad: 8, precio_unitario: 45.30 },
     { producto: "Auriculares Bluetooth", cantidad: 9, precio_unitario: 70.00 }
 ]);
+
+db.ventas.aggregate([
+    {$group : {_id: "$producto", total_vendido:{$sum: {$multiply: ["$precio_unitario" , "$cantidad"]}}}
+    },
+
+    {
+		$sort: {total_vendido: -1}}	
+]);
+
+//ej6
+db.clientes.insertMany([
+    { nombre: "Juan", apellido: "Pérez", id_cliente: 101, id_compra: 5001, total_compra: 150.75 },
+    { nombre: "María", apellido: "Gómez", id_cliente: 102, id_compra: 5002, total_compra: 200.50 },
+    { nombre: "Carlos", apellido: "Rodríguez", id_cliente: 103, id_compra: 5003, total_compra: 325.00 },
+    { nombre: "Sofía", apellido: "Fernández", id_cliente: 104, id_compra: 5004, total_compra: 125.00 },
+    { nombre: "Andrés", apellido: "Martínez", id_cliente: 105, id_compra: 5005, total_compra: 275.30 },
+    { nombre: "Lucía", apellido: "Silva", id_cliente: 106, id_compra: 5006, total_compra: 450.00 },
+    { nombre: "Diego", apellido: "López", id_cliente: 107, id_compra: 5007, total_compra: 600.20 },
+    { nombre: "Valentina", apellido: "Torres", id_cliente: 108, id_compra: 5008, total_compra: 320.40 },
+    { nombre: "Mateo", apellido: "García", id_cliente: 109, id_compra: 5009, total_compra: 150.00 },
+    { nombre: "Camila", apellido: "Díaz", id_cliente: 110, id_compra: 5010, total_compra: 200.75 },
+    { nombre: "Agustín", apellido: "Morales", id_cliente: 111, id_compra: 5011, total_compra: 375.90 },
+    { nombre: "Florencia", apellido: "Ríos", id_cliente: 112, id_compra: 5012, total_compra: 500.00 },
+    { nombre: "Tomás", apellido: "Acosta", id_cliente: 113, id_compra: 5013, total_compra: 290.10 },
+    { nombre: "Martina", apellido: "Navarro", id_cliente: 114, id_compra: 5014, total_compra: 150.60 },
+    { nombre: "Ezequiel", apellido: "Sosa", id_cliente: 115, id_compra: 5015, total_compra: 625.75 }
+  ])
+
+db.clientes.createIndex({nombre: 1, apellido: 1})
