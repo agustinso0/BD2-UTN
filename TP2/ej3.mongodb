@@ -1,0 +1,4 @@
+/*
+Ejercicio 3: Uso de proyección Recupera los nombres y puestos de todos los empleados, sin mostrar el _id.
+*/
+db.empleados.find({}, { nombre: 1, edad: 1, puesto: 1, _id: 0 });
