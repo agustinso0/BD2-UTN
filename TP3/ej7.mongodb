@@ -1,0 +1,35 @@
+use("tiendaOnline");
+
+db.productos.aggregate([
+  {
+    $project: {
+      nombre: 1,
+      precio: {
+        $cond: [
+          { 
+            $lt: [
+              "$precio", 100
+            ] 
+          },
+          "Economico",
+          {
+            $cond: [
+              { 
+                $and: [
+                  { 
+                    $gte: ["$precio", 100]
+                  },
+                  { 
+                    $lte: ["$precio", 500]
+                  }
+                ] 
+              },
+              "Estandar",
+              "Premium"
+            ]
+          }
+        ]
+      }
+    }
+  }
+]);
