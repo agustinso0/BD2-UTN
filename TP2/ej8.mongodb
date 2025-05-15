@@ -1,3 +1,6 @@
+/*
+Ejercicio 8: Uso de $lookup Realiza una agregación donde se combinen los datos de alumnos y cursos usando $lookup.
+*/
 use("universidad")
 
 db.alumnos.aggregate([

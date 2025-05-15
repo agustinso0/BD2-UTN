@@ -1,3 +1,6 @@
+/*
+Ejercicio 7: Referencias Crea una colección cursos y una colección alumnos. Luego inserta documentos donde los alumnos tengan una lista de id_curso referenciando a los cursos.
+*/
 use("universidad")
 
 db.cursos.insertMany([

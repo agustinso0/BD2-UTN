@@ -1,0 +1,1 @@
+EXPLAIN SELECT * FROM productos WHERE stock = 200;

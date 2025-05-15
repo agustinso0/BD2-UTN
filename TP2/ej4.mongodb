@@ -1,0 +1,12 @@
+/*
+Ejercicio 4: Documentos embebidos Agrega un campo direccion que incluya calle, ciudad y codigo_postal.
+*/
+db.empleados.aggregate({
+  $addFields: {
+    diereccion: [
+      { calle: "Av. Alem 1000" },
+      { ciudad: "Bahia Blanca" },
+      { codigo_postal: 8000 },
+    ],
+  },
+});
