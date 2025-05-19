@@ -47,7 +47,13 @@ db.empleados.find({},
 //ej4
 db.empleados.updateOne(
     {nombre: "Gabriel"},
-    {$set: {diereccion:[{calle: "Av. Alem 1000"}, {ciudad: "Bahia Blanca"}, {codigo_postal: 8000}]}}
+    {$set: {
+        diereccion:[
+            {calle: "Av. Alem 1000"},
+            {ciudad: "Bahia Blanca"},
+            {codigo_postal: 8000}
+        ]}
+    }
 )
 
 //ej5
