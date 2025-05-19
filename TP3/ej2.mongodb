@@ -1,0 +1,17 @@
+use("tiendaOnline");
+//ej2
+db.productos.aggregate([
+    {
+        $group: {
+            _id: "$categoria",
+            precioPromedio: { $avg: "$precio" },
+            precioMax: { $max: "$precio" },
+            precioMin: { $min: "$precio" },
+        }
+    },
+    {
+        $sort: {
+          _id: 1// ordeno por categoria
+        }
+    }
+])

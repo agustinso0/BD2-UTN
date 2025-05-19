@@ -1,12 +1,4 @@
-//Combinar múltiples etapas en un pipeline complejo.
-/*Obtener un informe de ventas que incluya:
-
-/*Top 3 productos más vendidos (por cantidad)
-Para cada producto: nombre, categoría, total de unidades vendidas, monto total generado
-Puntuación promedio en valoraciones*/
 use("tiendaOnline");
-
-
 
 db.ventas.aggregate([
     {

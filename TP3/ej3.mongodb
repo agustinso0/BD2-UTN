@@ -1,0 +1,14 @@
+use("tiendaOnline");
+
+//ej3
+
+db.productos.aggregate([
+    {
+        $project: {
+          _id: 0,
+          nombre: 1,
+          precio: 1,
+          precoConIva: { $multiply: ["$precio", 1.21] }, // aplico el iva
+        }
+    }
+])
