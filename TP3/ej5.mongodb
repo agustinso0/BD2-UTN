@@ -1,0 +1,27 @@
+use("tiendaOnline");
+
+db.ventas.aggregate([
+  {
+    $lookup: {
+      from: "productos",
+      localField: "producto_id",
+      foreignField: "_id",
+      as: "producto"
+    }
+  },
+  {
+    $project: {
+      total: 1,
+      categoria: "$producto.categoria",
+    }
+  },
+  {
+    $group: {
+      _id: "$categoria",
+      totalVendido: { $sum: "$total" }
+    }
+  },
+  {
+    $sort: { totalVendido: -1 }
+  }
+]);
