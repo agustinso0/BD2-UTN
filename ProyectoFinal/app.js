@@ -16,6 +16,21 @@ mongoose.connect(MONGODB_URL)
 
 
 
+app.get('/', (req, res) => {
+  res.send('Api de Sistema de Inventario de Tienda');
+});
+
+app.get('/productos/stock-bajo', async (req, res) => {
+  try {
+    const productos = await Producto.find({
+      $expr: { $lt: [ "$stockActual", "$stockMinimo" ] }
+    });
+    res.send(productos);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 
 
 app.listen(PORT, () => {
