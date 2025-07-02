@@ -428,4 +428,4 @@ RETURN Materia, round(Promedio*100)/100 AS Promedio_Redondeado
 
 ![IMAGEN](/TP4/img/Screenshot_15.png)
 
-(no hay alumnos con promedio menor a 7)
+(no hay materias con promedio menor a 7)
