@@ -1,8 +1,4 @@
-{
-  "name": "inventario-tienda",
-  "version": "1.0.0",
-  "description": "Sistema de Inventario de Tienda",
-  "main": "app.js",
+{ 
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
