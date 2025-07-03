@@ -1,7 +1,8 @@
 { 
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "seed": "node seed.js"
   },
   "dependencies": {
     "dotenv": "^16.4.0",

@@ -5,11 +5,9 @@ const MONGODB_URL = process.env.MONGODB_URL;
 
 async function seedDatabase() {
   try {
-    // Conectar a MongoDB
     await mongoose.connect(MONGODB_URL);
     console.log('Conectado a MongoDB para inicialización');
 
-    // Limpiar colecciones existentes
     await Promise.all([
       Proveedor.deleteMany({}),
       Producto.deleteMany({}),
@@ -17,7 +15,6 @@ async function seedDatabase() {
     ]);
     console.log('Colecciones limpiadas');
 
-    // Insertar proveedores
     const proveedores = await Proveedor.insertMany([
       {
         nombre: "Distribuidora Tech",
@@ -43,14 +40,12 @@ async function seedDatabase() {
     ]);
     console.log(`${proveedores.length} proveedores insertados`);
 
-    // Mapeo de códigos de producto a IDs de proveedor
     const proveedorMap = {
       "Distribuidora Tech": proveedores[0]._id,
       "Suministros Rápidos": proveedores[1]._id,
       "ElectroProveedores": proveedores[2]._id
     };
 
-    // Insertar productos
     const productos = await Producto.insertMany([
       {
         codigo: "PROD001",
@@ -105,13 +100,11 @@ async function seedDatabase() {
     ]);
     console.log(`${productos.length} productos insertados`);
 
-    // Mapeo de códigos de producto a IDs
     const productoMap = {};
     productos.forEach(p => {
       productoMap[p.codigo] = p._id;
     });
 
-    // Insertar movimientos
     const movimientos = await Movimiento.insertMany([
       {
         productoId: productoMap["PROD001"],
