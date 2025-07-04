@@ -1,65 +1,68 @@
 const mongoose = require('mongoose');
-//Producto
+
+// producto
 const productoSchema = new mongoose.Schema({
-  codigo: {
-    type: String,
-    required: true,
-    unique: true
+  codigo: { 
+    type: String, 
+    required: true, 
+    unique: true 
   },
-  nombre: {
-    type: String,
-    required: true
+  nombre: { 
+    type: String, 
+    required: true 
   },
   categoria: String,
   precio: Number,
-  stockActual: {
-    type: Number,
-    default: 0,
-    min: 0
+  stockActual: { 
+    type: Number, 
+    default: 0, 
+    min: 0 
   },
-  stockMinimo: {
-    type: Number,
-    default: 0,
-    min: 0
+  stockMinimo: { 
+    type: Number, 
+    default: 0, 
+    min: 0 
   },
-  proveedorId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Proveedor'
+  proveedorId: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Proveedor' 
   },
-  fechaUltimaActualizacion: {
-    type: Date,
-    default: Date.now
+  fechaUltimaActualizacion: { 
+    type: Date, 
+    default: Date.now 
   }
 });
-//Movimientos
+
+// Movimiento
 const movimientoSchema = new mongoose.Schema({
-  productoId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Producto',
-    required: true
+  productoId: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Producto', 
+    required: true 
   },
-  tipo: {
-    type: String,
-    enum: ['entrada', 'salida'],
-    required: true
+  tipo: { 
+    type: String, 
+    enum: ['entrada', 'salida'], 
+    required: true 
   },
-  cantidad: {
-    type: Number,
-    required: true,
-    min: 1
+  cantidad: { 
+    type: Number, 
+    required: true, 
+    min: 1 
   },
   motivo: String,
-  fecha: {
-    type: Date,
-    default: Date.now
+  fecha: { 
+    type: Date, 
+    default: Date.now 
   },
   usuario: String
 });
+
 //Proveedor
 const proveedorSchema = new mongoose.Schema({
-  nombre: {
-    type: String,
-    required: true
+  nombre: { 
+    type: String, 
+    required: true 
   },
   contacto: String,
   telefono: String,
@@ -67,12 +70,8 @@ const proveedorSchema = new mongoose.Schema({
   productosOfrecidos: [String]
 });
 
-const Producto = mongoose.model('Producto', productoSchema);
-const Movimiento = mongoose.model('Movimiento', movimientoSchema);
-const Proveedor = mongoose.model('Proveedor', proveedorSchema);
-
 module.exports = {
-  Producto,
-  Movimiento,
-  Proveedor
+  Producto: mongoose.model('Producto', productoSchema),
+  Movimiento: mongoose.model('Movimiento', movimientoSchema),
+  Proveedor: mongoose.model('Proveedor', proveedorSchema)
 };
