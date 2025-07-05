@@ -126,6 +126,54 @@ app.get('/movimientos/reporte', async (req, res) => {
 });
 
 
+// Registrar movimiento de entrada o salida de stock
+
+app.post('/movimientos', async (req, res) => {
+  try {
+    const { productoId, tipo, cantidad, motivo, usuario } = req.body;
+
+    // valido los datos
+    if (!productoId || !tipo || !cantidad) {
+      return res.status(400).send('productoId (código), tipo y cantidad son obligatorios');
+    }
+    const producto = await Producto.findOne({ codigo: productoId });
+    if (!producto) {
+      return res.status(404).send('Producto no encontrado');
+    }
+
+    // calculo el stock segun el tipo
+    let nuevoStock = producto.stockActual;
+    if (tipo === 'entrada') {
+      nuevoStock += cantidad;
+    } else if (tipo === 'salida') {
+      if (producto.stockActual < cantidad) {
+        return res.status(400).send('Stock insuficiente para la salida');
+      }
+      nuevoStock -= cantidad;
+    } else {
+      return res.status(400).send('Tipo de movimiento inválido');
+    }
+
+    producto.stockActual = nuevoStock;
+    producto.fechaUltimaActualizacion = new Date();
+    await producto.save();
+
+
+    // registramos el nuevo movimiento
+    const movimiento = new Movimiento({
+      productoId: producto._id,
+      tipo,
+      cantidad,
+      motivo,
+      usuario
+    });
+    await movimiento.save();
+
+    res.status(201).send(movimiento);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 
 

@@ -73,11 +73,32 @@ http://localhost:3100/productos
 
 ---
 
-## TODO
+## Registrar movimiento de entrada o salida de stock
 
-- Registrar movimientos de entrada y salida de stock (endpoint POST /movimientos)
+**POST** `/movimientos`  
+http://localhost:3100/movimientos
 
----
+**JSON de ejemplo para entrada:**
+```json
+{
+  "productoId": "PROD003",
+  "tipo": "entrada",
+  "cantidad": 10,
+  "motivo": "Compra a proveedor",
+  "usuario": "admin"
+}
+```
+
+**JSON de ejemplo para salida:**
+```json
+{
+  "productoId": "PROD003",
+  "tipo": "salida",
+  "cantidad": 3,
+  "motivo": "Venta a cliente",
+  "usuario": "vendedor1"
+}
+```
 
 **Tener en cuenta:**  
 - MongoDB tiene qu estar corriendo antes de iniciar la app.

@@ -1,5 +1,5 @@
-### Ejercicios seleccionados para la entrega:
-**Ejercicio 3: Red Social Profesional**
+### Ejercicios:
+
 ***
 **Ejercicio 1: Sistema de Gestión de Proyectos**
 
