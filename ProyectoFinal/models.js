@@ -77,6 +77,7 @@ const proveedorSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    contacto: String,
     telefono: String,
     email: String,
     productosOfrecidos: [
