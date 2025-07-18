@@ -101,5 +101,5 @@ http://localhost:3100/movimientos
 ```
 
 **Tener en cuenta:**  
-- MongoDB tiene qu estar corriendo antes de iniciar la app.
+- MongoDB tiene que estar corriendo antes de iniciar la app.
 - Los IDs de proveedor deben existir en la base de datos para asociarlos a productos.
