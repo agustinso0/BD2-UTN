@@ -47,7 +47,10 @@ app.get("/movimientos", async (req, res) => {
 // Obtener todos los proveedores
 app.get("/proveedores", async (req, res) => {
   try {
-    const proveedores = await Proveedor.find();
+    const proveedores = await Proveedor.find().populate(
+      "productosOfrecidos",
+      "codigo nombre"
+    ); // trae los productos ofrecidos por cada proveedor
     res.send(proveedores);
   } catch (error) {
     res.status(500).send(error);
@@ -103,9 +106,11 @@ app.get("/movimientos/reporte", async (req, res) => {
     if (!fechaInicio || !fechaFin) {
       return res.status(400).send("Se requieren fechaInicio y fechaFin");
     }
-
+    console.log(
+      `Consultando movimientos desde ${fechaInicio} hasta ${fechaFin}`
+    );
     const movimientos = await Movimiento.find({
-      fecha: {
+      createdAt: {
         $gte: new Date(fechaInicio),
         $lte: new Date(fechaFin),
       },
@@ -148,7 +153,6 @@ app.post("/movimientos", async (req, res) => {
     }
 
     producto.stockActual = nuevoStock;
-    producto.fechaUltimaActualizacion = new Date();
     await producto.save();
 
     // registramos el nuevo movimiento
