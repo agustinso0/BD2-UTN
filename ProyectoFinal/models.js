@@ -58,10 +58,6 @@ const movimientoSchema = new mongoose.Schema(
       min: 1,
     },
     motivo: String,
-    fecha: {
-      type: Date,
-      default: Date.now,
-    },
     usuario: String,
   },
   {
