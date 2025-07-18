@@ -21,21 +21,21 @@ async function seedDatabase() {
         contacto: "Juan López",
         telefono: "+541123456789",
         email: "ventas@distritech.com",
-        productosOfrecidos: ["PROD001", "PROD002", "PROD003"],
+        productosOfrecidos: [],
       },
       {
         nombre: "Suministros Rápidos",
         contacto: "María García",
         telefono: "+541198765432",
         email: "info@sumirpidos.com",
-        productosOfrecidos: ["PROD004", "PROD005"],
+        productosOfrecidos: [],
       },
       {
         nombre: "ElectroProveedores",
         contacto: "Carlos Martínez",
         telefono: "+541156789012",
         email: "carlos@electroprov.com",
-        productosOfrecidos: ["PROD006", "PROD007"],
+        productosOfrecidos: [],
       },
     ]);
     console.log(`${proveedores.length} proveedores insertados`);
@@ -100,13 +100,34 @@ async function seedDatabase() {
       productoMap[p.codigo] = p._id;
     });
 
+    await Proveedor.findByIdAndUpdate(proveedorMap["Distribuidora Tech"], {
+      $push: {
+        productosOfrecidos: {
+          $each: [
+            productoMap["PROD001"],
+            productoMap["PROD002"],
+            productoMap["PROD003"],
+          ],
+        },
+      },
+    });
+
+    await Proveedor.findByIdAndUpdate(proveedorMap["Suministros Rápidos"], {
+      $push: {
+        productosOfrecidos: {
+          $each: [productoMap["PROD004"], productoMap["PROD005"]],
+        },
+      },
+    });
+
+    console.log("Proveedores actualizados con productos");
+
     const movimientos = await Movimiento.insertMany([
       {
         productoId: productoMap["PROD001"],
         tipo: "entrada",
         cantidad: 10,
         motivo: "Compra inicial",
-        fecha: new Date("2025-06-28T09:00:00Z"),
         usuario: "admin",
       },
       {
@@ -114,7 +135,6 @@ async function seedDatabase() {
         tipo: "salida",
         cantidad: 2,
         motivo: "Venta a cliente",
-        fecha: new Date("2025-06-30T14:30:00Z"),
         usuario: "vendedor1",
       },
       {
@@ -122,7 +142,6 @@ async function seedDatabase() {
         tipo: "entrada",
         cantidad: 5,
         motivo: "Reposición de stock",
-        fecha: new Date("2025-07-01T11:00:00Z"),
         usuario: "admin",
       },
       {
@@ -130,7 +149,6 @@ async function seedDatabase() {
         tipo: "salida",
         cantidad: 2,
         motivo: "Venta a cliente",
-        fecha: new Date("2025-07-02T16:45:00Z"),
         usuario: "vendedor2",
       },
       {
@@ -138,7 +156,6 @@ async function seedDatabase() {
         tipo: "entrada",
         cantidad: 5,
         motivo: "Compra a proveedor",
-        fecha: new Date("2025-07-02T10:15:00Z"),
         usuario: "admin",
       },
     ]);
