@@ -4,7 +4,7 @@
 
  *Muscolino Mateo*
   *Loos Agustin*
- *Kesler Gabriel*
+ *Kessler Gabriel*
 
 ## Instalación
 
