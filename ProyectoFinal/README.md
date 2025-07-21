@@ -1,5 +1,11 @@
 # Sistema de Inventario de Tienda
 
+## Integrantes:
+
+ *Muscolino Mateo*
+  *Loos Agustin*
+ *Kesler Gabriel*
+
 ## Instalación
 
 ```sh
