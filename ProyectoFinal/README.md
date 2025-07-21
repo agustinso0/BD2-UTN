@@ -7,6 +7,7 @@
  *Kessler Gabriel*
 
 ## Instalación
+*Se utiliza Node.js y Mongoose*
 
 ```sh
 npm install
